@@ -2,8 +2,22 @@
 
 
 var money = parseInt(prompt("How much money do you have for this mouth?"));
-var date = prompt("Write down the date in YYYY-MM-DD format");
+console.log(money);
+console.log(typeof(money));
 
+while (!parseInt(money)){
+    if(money == 0){
+        break;
+    }
+    alert("Write down a number");
+    money = parseInt(prompt("How much money do you have for this mouth?"));
+    if(parseInt(money) || money==0){
+        break;
+    } else{
+        continue;
+    }
+}
+var date = prompt("Write down the date in YYYY-MM-DD format");
 
 var appData = {
     money_ : money,
@@ -12,6 +26,7 @@ var appData = {
     optionalExpenses : {},
     savings : false,
     expenses : {},
+    moneyPerDay_ : moneyPerDay,
 
 };
 
@@ -23,12 +38,18 @@ for (let i = 0; i<2;++i){
    
 }
 
-console.log(appData.expenses);
+if (money == 0){
+    var moneyPerDay = 0;
+    appData.moneyPerDay_ = moneyPerDay;
+    alert("Sorry, you have nothing to spend");
 
-var moneyPerDay = money / 30;
-appData.moneyPerDay = moneyPerDay;
-alert("You can spend " + parseInt(moneyPerDay) +" euros at day");
-alert("Try one more time!");
+} else { 
 
+    var moneyPerDay = money / 30;
+    appData.moneyPerDay = moneyPerDay;
+
+    alert("You can spend " + parseInt(moneyPerDay) + " euros per day");
+
+}
 
 
