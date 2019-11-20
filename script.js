@@ -1,22 +1,28 @@
 'use strict';
+function checkNumber(num){
+    if(num<0 || typeof(num)!='number'){
+    while (!parseInt(num) || num < 0){
+        if(num == 0){
+            return num;
+        }
+        alert("Write down a number");
+        num = parseInt(prompt("How much money do you have for this mouth?"));
+        if(parseInt(num) && num>=0){
+            return num;
+        } else if(num<0){
+            num = parseInt(prompt("Write down a positive number(your money for this mouth)"));
+        }
+      }
+    } else {
+        return num;
+    } 
 
+}
 
 var money = parseInt(prompt("How much money do you have for this mouth?"));
+money = checkNumber(money);
 console.log(money);
-console.log(typeof(money));
 
-while (!parseInt(money)){
-    if(money == 0){
-        break;
-    }
-    alert("Write down a number");
-    money = parseInt(prompt("How much money do you have for this mouth?"));
-    if(parseInt(money) || money==0){
-        break;
-    } else{
-        continue;
-    }
-}
 var date = prompt("Write down the date in YYYY-MM-DD format");
 
 var appData = {
@@ -38,7 +44,7 @@ for (let i = 0; i<2;++i){
    
 }
 
-if (money == 0){
+if (money <= 0){
     var moneyPerDay = 0;
     appData.moneyPerDay_ = moneyPerDay;
     alert("Sorry, you have nothing to spend");
@@ -50,6 +56,5 @@ if (money == 0){
 
     alert("You can spend " + parseInt(moneyPerDay) + " euros per day");
 
+
 }
-
-
