@@ -1,27 +1,30 @@
+
 'use strict';
-function checkNumber(num){
-    if(num<0 || typeof(num)!='number'){
-    while (!parseInt(num) || num < 0){
-        if(num == 0){
-            return num;
+
+function getNumber(num){
+    num = parseInt(prompt("Write down a positive number"));
+    let isCorrect = false;
+    if(num<0 || !parseInt(num)){
+        while(isCorrect==false){
+            num = parseInt(prompt("Write down a number"));
+            if(typeof(num)!='undefined' && num>0){
+                isCorrect = true;
+                return num;
+            } else{
+                continue;
+            }
         }
-        alert("Write down a number");
-        num = parseInt(prompt("How much money do you have for this mouth?"));
-        if(parseInt(num) && num>=0){
-            return num;
-        } else if(num<0){
-            num = parseInt(prompt("Write down a positive number(your money for this mouth)"));
-        }
-      }
     } else {
         return num;
-    } 
-
+    }
 }
 
-var money = parseInt(prompt("How much money do you have for this mouth?"));
-money = checkNumber(money);
+let money;
+alert("Write down the amount of money you have for this mouth");
+money = getNumber(money);
+//money = checkNumber(money);
 console.log(money);
+console.log(typeof(money));
 
 var date = prompt("Write down the date in YYYY-MM-DD format");
 
@@ -37,10 +40,14 @@ var appData = {
 };
 
 for (let i = 0; i<2;++i){
-    var q1 = prompt("Describe your required expense this mouth: p.s it's not necessary"),
-        q2 = parseInt(prompt("How much will it cost?"));
-        money = money - q2;
+    let q1 = prompt("Describe your required expense this mouth: p.s it's not necessary");
+    alert("How much will it cost?");
+    let q2;
+    q2 = getNumber(q2);
+    console.log("required expense " + i +" is iqual to - " + q2);
+    console.log(typeof(q2));
     appData.expenses[q1] = q2;
+    money -= q2;
    
 }
 
